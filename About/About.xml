@@ -2,10 +2,10 @@
 <ModMetaData>
 	<name>[KV] Call Trade Ships</name>
 	<author>Kiame Vivacity</author>
-	<url></url>
+	<url>https://ludeon.com/forums/index.php?topic=54006.0</url>
 	    <supportedVersions>
         <li>1.2</li>
     </supportedVersions>
 	<packageId>calltradeships.kv.rw</packageId>
-	<description>Call for trade ships for a price. The price can be adjusted in the mod's settings.</description>
+	<description>Call for trade ships for a price from a Comms Console. The price can be adjusted in the mod's settings.</description>
 </ModMetaData>
