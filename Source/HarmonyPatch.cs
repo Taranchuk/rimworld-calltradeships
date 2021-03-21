@@ -60,7 +60,10 @@ namespace CallTradeShips
                     }
                 }
                 if (found < Settings.Cost)
+                {
+                    opts.Add(new FloatMenuOption("CallTradeShips.NotEnoughSilver".Translate(found, Settings.Cost), null));
                     return;
+                }
             }
 
             foreach (var d in orbitalTraders)

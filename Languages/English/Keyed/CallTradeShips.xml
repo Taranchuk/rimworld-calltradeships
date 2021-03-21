@@ -4,4 +4,5 @@
 	<CallTradeShips.Call>Call orbital trader: {0}</CallTradeShips.Call>
 	<CallTradeShips.CallWithCost>Call orbital trader: {0} (cost: {1} silver)</CallTradeShips.CallWithCost>
 	<CallTradeShips.Cost>Cost</CallTradeShips.Cost>
+	<CallTradeShips.NotEnoughSilver>Not enough silver to call for trade ships ({0} but need {1})</CallTradeShips.NotEnoughSilver>
 </LanguageData>
