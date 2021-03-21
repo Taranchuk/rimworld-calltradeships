@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>[KV] Call Trade Ships</name>
+	<author>Kiame Vivacity</author>
+	<url></url>
+	    <supportedVersions>
+        <li>1.2</li>
+    </supportedVersions>
+	<packageId>calltradeships.kv.rw</packageId>
+	<description>Call for trade ships for a price. The price can be adjusted in the mod's settings.</description>
+</ModMetaData>

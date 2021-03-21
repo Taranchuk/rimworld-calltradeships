@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<CallTradeShips.ModName>Call Trade Ships</CallTradeShips.ModName>
+	<CallTradeShips.Call>Call orbital trader: {0}</CallTradeShips.Call>
+	<CallTradeShips.CallWithCost>Call orbital trader: {0} (cost: {1} silver)</CallTradeShips.CallWithCost>
+	<CallTradeShips.Cost>Cost</CallTradeShips.Cost>
+</LanguageData>

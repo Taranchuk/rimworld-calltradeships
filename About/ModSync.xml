@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModSyncNinjaData>
+  <ModName>Call Trade Ships</ModName>
+  <Version>1.2.0.0</Version>
+  <SaveBreaking>False</SaveBreaking>
+  <Host name="Github">
+    <Owner>KiameV</Owner>
+    <Project>rimworld-calltradeships</Project>
+    <DownloadFrom>ModSyncReleases</DownloadFrom>
+    <Branch>master</Branch>
+  </Host>
+</ModSyncNinjaData>
