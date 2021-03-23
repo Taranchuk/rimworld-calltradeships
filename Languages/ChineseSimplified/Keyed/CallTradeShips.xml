@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<CallTradeShips.ModName>商船传呼</CallTradeShips.ModName>
+	<CallTradeShips.Call>呼叫商船: {0}</CallTradeShips.Call>
+	<CallTradeShips.CallWithCost>呼叫: {0} (费用: {1} 白银)</CallTradeShips.CallWithCost>
+	<CallTradeShips.Cost>费用/次(白银)</CallTradeShips.Cost>
+	<CallTradeShips.NotEnoughSilver>白银不足以传呼商船(单次费用为 {1},现有 {0})</CallTradeShips.NotEnoughSilver>
+</LanguageData>
