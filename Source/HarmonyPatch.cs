@@ -66,27 +66,53 @@ namespace CallTradeShips
                 }
             }
 
+            if (Settings.IsUsingTraderShipsMod())
+            {
+                opts.Add(new FloatMenuOption(GetTraderShipsMenuLabel(), delegate ()
+                {
+                    foreach(var id in DefDatabase<IncidentDef>.AllDefsListForReading)
+                    {
+                        if (id.Worker is IncidentWorker_OrbitalTraderArrival)
+                        {
+                            if (id.Worker.TryExecute(new IncidentParms() { target = map }))
+                            {
+                                TradeUtility.LaunchSilver(map, Settings.Cost);
+                                return;
+                            }
+                            break;
+                        }
+                    }
+                    Log.Error("CallTradShips failed to create trade ship from mod TraderShips");
+                }, MenuOptionPriority.Low));
+
+                if (!Settings.AllowOrbitalTraders_ForTraderShipsMod)
+                    return;
+            }
+
             foreach (var d in orbitalTraders)
             {
-                opts.Add(new FloatMenuOption(getMenuLabel(d), delegate ()
+                opts.Add(new FloatMenuOption(GetMenuLabel(d), delegate ()
                 {
-                    TradeShip tradeShip = new TradeShip(d);
                     if (map.listerBuildings.allBuildingsColonist.Any((Building b) => b.def.IsCommsConsole && b.GetComp<CompPowerTrader>().PowerOn))
                     {
+                        TradeShip tradeShip = new TradeShip(d);
                         TradeUtility.LaunchSilver(map, Settings.Cost);
-                        Find.LetterStack.ReceiveLetter(tradeShip.def.LabelCap, "TraderArrival".Translate(
-                            tradeShip.name,
-                            tradeShip.def.label,
-                            "TraderArrivalNoFaction".Translate()
-                        ), LetterDefOf.PositiveEvent, null);
+                        map.passingShipManager.AddShip(tradeShip);
+                        tradeShip.GenerateThings();
+                        Find.LetterStack.ReceiveLetter(tradeShip.def.LabelCap, "TraderArrival".Translate(tradeShip.name, tradeShip.def.label, "TraderArrivalNoFaction".Translate()), LetterDefOf.PositiveEvent, null);
                     }
-                    map.passingShipManager.AddShip(tradeShip);
-                    tradeShip.GenerateThings();
                 }, MenuOptionPriority.Low));
             }
         }
 
-        static string getMenuLabel(TraderKindDef d)
+        static string GetTraderShipsMenuLabel()
+        {
+            if (Settings.Cost > 0)
+                return "CallTradeShips.CallTraderShipCost".Translate(Settings.Cost);
+            return "CallTradeShips.CallTraderShip".Translate();
+        }
+
+        static string GetMenuLabel(TraderKindDef d)
         {
             if (Settings.Cost > 0)
                 return "CallTradeShips.CallWithCost".Translate(d.LabelCap, Settings.Cost);

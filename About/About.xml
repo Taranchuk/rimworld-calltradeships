@@ -7,5 +7,9 @@
         <li>1.2</li>
     </supportedVersions>
 	<packageId>calltradeships.kv.rw</packageId>
-	<description>Call for trade ships for a price from a Comms Console. The price can be adjusted in the mod's settings.</description>
+	<description>
+Call for trade ships for a price from a Comms Console. The price can be adjusted in the mod's settings.
+	
+Thanks translators:
+- HawnHan -  Simplified Chinese</description>
 </ModMetaData>
