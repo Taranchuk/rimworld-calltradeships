@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <JobDef>
+    <defName>CallTradeShip</defName>
+    <driverClass>CallTradeShips.JobDriver_CallTradeShip</driverClass>
+    <reportString>Calling for trade ship.</reportString>
+  </JobDef>
+</Defs>

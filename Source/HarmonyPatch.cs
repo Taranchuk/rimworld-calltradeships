@@ -4,6 +4,8 @@ using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
+using static CallTradeShips.Job_CallTradeShip;
 
 namespace CallTradeShips
 {
@@ -20,7 +22,8 @@ namespace CallTradeShips
     [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders")]
     static class Patch_FloatMenuMakerMap_AddHumanlikeOrders
     {
-        private static List<TraderKindDef> orbitalTraders = new List<TraderKindDef>();
+        private static readonly List<TraderKindDef> orbitalTraders = new List<TraderKindDef>();
+        private static readonly JobDef callTradeShip = DefDatabase<JobDef>.GetNamed("CallTradeShip", true);
 
         [HarmonyPriority(Priority.Last)]
         static void Postfix(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
@@ -28,11 +31,14 @@ namespace CallTradeShips
             foreach (Thing t in IntVec3.FromVector3(clickPos).GetThingList(pawn.Map))
             {
                 if (t is Building_CommsConsole)
-                    addOptions(pawn.Map, opts);
+                {
+                    addOptions(pawn, t, opts);
+                    break;
+                }
             }
         }
 
-        static void addOptions(Map map, List<FloatMenuOption> opts)
+        static void addOptions(Pawn pawn, Thing commsConsole, List<FloatMenuOption> opts)
         {
             if (orbitalTraders.Count == 0)
             {
@@ -47,42 +53,18 @@ namespace CallTradeShips
                 });
             }
 
-            if (Settings.Cost > 0)
+            if (!Util.HasEnoughSilver(commsConsole.Map, out int found))
             {
-                int found = 0;
-                foreach (Thing t in TradeUtility.AllLaunchableThingsForTrade(map))
-                {
-                    if (t.def == ThingDefOf.Silver)
-                    {
-                        found += t.stackCount;
-                        if (found > Settings.Cost)
-                            break;
-                    }
-                }
-                if (found < Settings.Cost)
-                {
-                    opts.Add(new FloatMenuOption("CallTradeShips.NotEnoughSilver".Translate(found, Settings.Cost), null));
-                    return;
-                }
+                opts.Add(new FloatMenuOption("CallTradeShips.NotEnoughSilver".Translate(found, Settings.Cost), null));
+                return;
             }
 
             if (Settings.IsUsingTraderShipsMod())
             {
                 opts.Add(new FloatMenuOption(GetTraderShipsMenuLabel(), delegate ()
                 {
-                    foreach(var id in DefDatabase<IncidentDef>.AllDefsListForReading)
-                    {
-                        if (id.Worker is IncidentWorker_OrbitalTraderArrival)
-                        {
-                            if (id.Worker.TryExecute(new IncidentParms() { target = map }))
-                            {
-                                TradeUtility.LaunchSilver(map, Settings.Cost);
-                                return;
-                            }
-                            break;
-                        }
-                    }
-                    Log.Error("CallTradShips failed to create trade ship from mod TraderShips");
+                    Job job = new Job_CallTradeShip(callTradeShip, commsConsole, null, TraderKindEnum.Lander);
+                    pawn.jobs.TryTakeOrderedJob(job);
                 }, MenuOptionPriority.Low));
 
                 if (!Settings.AllowOrbitalTraders_ForTraderShipsMod)
@@ -93,14 +75,8 @@ namespace CallTradeShips
             {
                 opts.Add(new FloatMenuOption(GetMenuLabel(d), delegate ()
                 {
-                    if (map.listerBuildings.allBuildingsColonist.Any((Building b) => b.def.IsCommsConsole && b.GetComp<CompPowerTrader>().PowerOn))
-                    {
-                        TradeShip tradeShip = new TradeShip(d);
-                        TradeUtility.LaunchSilver(map, Settings.Cost);
-                        map.passingShipManager.AddShip(tradeShip);
-                        tradeShip.GenerateThings();
-                        Find.LetterStack.ReceiveLetter(tradeShip.def.LabelCap, "TraderArrival".Translate(tradeShip.name, tradeShip.def.label, "TraderArrivalNoFaction".Translate()), LetterDefOf.PositiveEvent, null);
-                    }
+                    Job job = new Job_CallTradeShip(callTradeShip, commsConsole, d, TraderKindEnum.Orbital);
+                    pawn.jobs.TryTakeOrderedJob(job);
                 }, MenuOptionPriority.Low));
             }
         }
