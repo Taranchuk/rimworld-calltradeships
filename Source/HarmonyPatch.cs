@@ -64,7 +64,7 @@ namespace CallTradeShips
                 opts.Add(new FloatMenuOption(GetTraderShipsMenuLabel(), delegate ()
                 {
                     Job job = new Job_CallTradeShip(callTradeShip, commsConsole, null, TraderKindEnum.Lander);
-                    pawn.jobs.TryTakeOrderedJob_NewTemp(job, JobTag.Misc, true);
+                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, true);
                 }, MenuOptionPriority.Low));
 
                 if (!Settings.AllowOrbitalTraders_ForTraderShipsMod)
@@ -76,7 +76,7 @@ namespace CallTradeShips
                 opts.Add(new FloatMenuOption(GetMenuLabel(d), delegate ()
                 {
                     Job job = new Job_CallTradeShip(callTradeShip, commsConsole, d, TraderKindEnum.Orbital);
-                    pawn.jobs.TryTakeOrderedJob_NewTemp(job, JobTag.Misc, true);
+                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc, true);
                 }, MenuOptionPriority.Low));
             }
         }
