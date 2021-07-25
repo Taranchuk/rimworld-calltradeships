@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CallTradeShips.ModName>Call Trade Ships</CallTradeShips.ModName>
+  <CallTradeShips.Call>궤도 상선 부르기: {0}</CallTradeShips.Call>
+  <CallTradeShips.CallWithCost>궤도 상선 부르기: {0} (비용: 은 {1}개)</CallTradeShips.CallWithCost>
+  <CallTradeShips.Cost>비용</CallTradeShips.Cost>
+  <CallTradeShips.NotEnoughSilver>상선을 부를 은이 부족함 ({1}이 필요하나 {0}밖에 없음)</CallTradeShips.NotEnoughSilver>
+
+  <!-- For TraderShips mod - https://github.com/AUTOMATIC1111/TraderShips -->
+  <CallTradeShips.AllowOrbitalTraders>궤도 상선 허용</CallTradeShips.AllowOrbitalTraders>
+  <CallTradeShips.CallTraderShip>착륙하도록 상선 부르기</CallTradeShips.CallTraderShip>
+  <CallTradeShips.CallTraderShipCost>착륙하도록 상선 부르기 (비용: 은 {0}개)</CallTradeShips.CallTraderShipCost>
+
+</LanguageData>
