@@ -12,5 +12,15 @@
 Call for trade ships for a price from a Comms Console. The price can be adjusted in the mod's settings.
 	
 Thanks translators:
-- HawnHan -  Simplified Chinese</description>
+- HawnHan - Simplified Chinese
+- isty2e - Korean
+</description>
+<modDependencies>
+    <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+</modDependencies>
 </ModMetaData>
