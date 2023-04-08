@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CallTradeShips.ModName>Вызов торговых судов</CallTradeShips.ModName>
+  <CallTradeShips.Call>Вызовите орбитального торговца: {0}</CallTradeShips.Call>
+  <CallTradeShips.CallWithCost>Вызовите орбитального торговца: {0} (стоимость: {1} серебра)</CallTradeShips.CallWithCost>
+  <CallTradeShips.Cost>Стоимость</CallTradeShips.Cost>
+  <CallTradeShips.NotEnoughSilver>Недостаточно серебра для вызова торговых судов ({0}, нужно {1})</CallTradeShips.NotEnoughSilver>
+
+  <!-- For TraderShips mod - https://github.com/AUTOMATIC1111/TraderShips -->
+  <CallTradeShips.AllowOrbitalTraders>Разрешить орбитальных торговцев</CallTradeShips.AllowOrbitalTraders>
+  <CallTradeShips.CallTraderShip>Вызвать торговца на землю</CallTradeShips.CallTraderShip>
+  <CallTradeShips.CallTraderShipCost>Призвать торговца на землю (стоимость: {0} серебра)</CallTradeShips.CallTraderShipCost>
+
+</LanguageData>
